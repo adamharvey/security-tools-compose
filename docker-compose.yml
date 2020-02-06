@@ -1,0 +1,16 @@
+version:  "3.7"
+services:
+
+  webgoat:
+    image: danmx/docker-owasp-webgoat
+    ports:
+      - "8081:8080"
+
+  zap:
+    image: owasp/zap2docker-stable
+    ports:
+      - "8090:8080"
+    command:
+      - zap-webswing.sh
+    depends_on:
+      - webgoat
